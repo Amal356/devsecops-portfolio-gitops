@@ -19,7 +19,11 @@ configMapGenerator:
       - CORS_ORIGIN=http://portfolio.local
       - CHECKPOINT_DISABLE=1
       - HOME=/tmp
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://tempo.monitoring.svc.cluster.local:4318
+      - OTEL_SERVICE_NAME=devsecops-api
   - name: frontend-config
     literals:
       - API_URL=http://api:4000
       - NEXT_TELEMETRY_DISABLED=1
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://tempo.monitoring.svc.cluster.local:4318
+      - OTEL_SERVICE_NAME=devsecops-portfolio
