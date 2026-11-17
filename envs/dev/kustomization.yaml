@@ -12,7 +12,7 @@ replicas:
   - name: frontend
     count: 1
   - name: api
-    count: 1
+    count: 2
 # Images de Harbor, signées, fixées par DIGEST (le tag sert seulement de repère)
 images:
   - name: devsecops-api
