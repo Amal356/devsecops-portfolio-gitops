@@ -10,6 +10,7 @@ resources:
   - api.yaml
   - frontend.yaml
   - ingress.yaml
+  - migration-job.yaml          # étape 218 : hook Argo CD PreSync
 configMapGenerator:
   - name: api-config
     literals:
