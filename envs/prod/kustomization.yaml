@@ -17,8 +17,8 @@ replicas:
 images:
   - name: devsecops-api
     newName: localhost:8090/devsecops/devsecops-api
-    newTag: "1.6.0"
-    digest: sha256:2b38d27fc35af784b7543ac4c150f0468471616aeefe761fe64aec0b5966799c
+    newTag: "1.6.1"
+    digest: sha256:cbde6858f1858e395f2b9ba9dc48ec9f6db7c73b9ad015a9afd65460b0f285a5
   - name: devsecops-portfolio
     newName: localhost:8090/devsecops/devsecops-portfolio
     newTag: "1.6.0"
