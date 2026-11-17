@@ -1,0 +1,40 @@
+# Environnement DEV – déployé automatiquement par Argo CD (Application portfolio-dev)
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: portfolio-dev
+resources:
+  - namespace.yaml
+  - ../../base
+labels:
+  - pairs: { environment: dev }
+    includeSelectors: false
+replicas:
+  - name: frontend
+    count: 1
+  - name: api
+    count: 1
+# Images de Harbor, signées, fixées par DIGEST (le tag sert seulement de repère)
+images:
+  - name: devsecops-api
+    newName: localhost:8090/devsecops/devsecops-api
+    newTag: "1.6.0"
+    digest: sha256:2b38d27fc35af784b7543ac4c150f0468471616aeefe761fe64aec0b5966799c
+  - name: devsecops-portfolio
+    newName: localhost:8090/devsecops/devsecops-portfolio
+    newTag: "1.6.0"
+    digest: sha256:5843acd3f3a335fe7d53338cf4c78a9114cc75060d014fd5a6fff929a486c456
+configMapGenerator:
+  - name: frontend-config
+    behavior: merge
+    literals:
+      - API_URL=http://api.portfolio-dev.svc.cluster.local:4000
+  - name: api-config
+    behavior: merge
+    literals:
+      - CORS_ORIGIN=http://dev.portfolio.local:8088,http://dev.portfolio.local
+patches:
+  - target: { kind: Ingress, name: portfolio }
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: dev.portfolio.local
