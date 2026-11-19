@@ -17,12 +17,12 @@ replicas:
 images:
   - name: devsecops-api
     newName: localhost:8090/devsecops/devsecops-api
-    newTag: "5c3545c"
-    digest: sha256:e09d624f22d5998d348244ac86c52a5f6f4840fd69b40ff9a9aa986cc0c5504d
+    newTag: "c0bdfb5"
+    digest: sha256:607468950d8a6481e7bd90179ee7d74bde06979074daf96aaf5578702ba4f6f8
   - name: devsecops-portfolio
     newName: localhost:8090/devsecops/devsecops-portfolio
-    newTag: "5c3545c"
-    digest: sha256:d63c55aaf570852807ca0cda829207a681979ec69befa939813916718b7420b4
+    newTag: "c0bdfb5"
+    digest: sha256:53e117fbac3e34f6bfe0f662cc1236d5d684d20aaf3c113d4ace54206f4b28bc
 configMapGenerator:
   - name: frontend-config
     behavior: merge
