@@ -30,6 +30,12 @@ spec:
         runAsGroup: 70
         fsGroup: 70
         seccompProfile: { type: RuntimeDefault }
+        # Profil AppArmor chargé sur le nœud (cv-devsecops/50-cloudnativepg/apparmor/cnpg-postgres) :
+        # le profil par défaut de containerd bloque les signaux internes de PostgreSQL sur cette VM
+        # (blocage en « recovery mode » après un redémarrage ou une restauration Velero).
+        appArmorProfile:
+          type: Localhost
+          localhostProfile: cnpg-postgres
       containers:
         - name: postgres
           image: postgres:16-alpine
