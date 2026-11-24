@@ -27,6 +27,11 @@ spec:
             - { name: http, containerPort: 3000 }
           envFrom:
             - configMapRef: { name: frontend-config }
+          env:
+            # Activité 9, partie 50 : secret du client OIDC Keycloak (Secret créé hors Git ; absent = connexion désactivée)
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef: { name: oidc-client, key: OIDC_CLIENT_SECRET, optional: true }
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
